@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Geisternetz Melden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #1e90ff; /* Meeresblau */
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .navbar a:hover {
+            background-color: #1c86ee; /* Etwas dunkleres Blau beim Hover */
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            width: 50%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            color: #0099cc;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #0099cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0077aa;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="navbar">
+        <a href="index.xhtml">Startseite</a>
+        <a href="netze.xhtml">Netze</a>
+    </div>
+
+    <h:form>
+        <div class="form-container">
+            <h1>Geisternetz Melden</h1>
+
+            <h:panelGroup layout="block">
+                <h:outputLabel for="standort" value="Standort (GPS-Koordinaten):" />
+                <h:inputText id="standort" value="#{geisternetzController.standort}" />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block">
+                <h:outputLabel for="groesse" value="Größe in Meter:" />
+                <h:inputText id="groesse" value="#{geisternetzController.groesse}" />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block">
+                <h:outputLabel for="status" value="Status:" />
+                <h:selectOneMenu id="status" value="#{geisternetzController.status}">
+                    <f:selectItem itemLabel="Gemeldet" itemValue="Gemeldet" />
+                    <f:selectItem itemLabel="Bergung in Arbeit" itemValue="Bergung bevorstehend" />
+                    <f:selectItem itemLabel="Geborgen" itemValue="Geborgen" />
+                    <f:selectItem itemLabel="Verschollen" itemValue="Verschollen" />
+                </h:selectOneMenu>
+            </h:panelGroup>
+
+            <h:commandButton value="Speichern" action="#{geisternetzController.save}" />
+        </div>
+    </h:form>
+</h:body>
+</html>
+
+
+
+
+
+
+

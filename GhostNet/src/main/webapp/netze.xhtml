@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Geisternetze</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e90ff; /* Meeresblau */
+            padding: 10px;
+        }
+
+        .navbar .links {
+            display: flex;
+            padding-left: 20px; /* Zusätzlicher Abstand auf der linken Seite */
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .navbar a:hover {
+            background-color: #1c86ee; /* Etwas dunkleres Blau beim Hover */
+        }
+
+        .navbar .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            flex: 1; /* Nimmt den verfügbaren Platz ein */
+            text-align: center; /* Zentriert den Titel */
+            margin-left: 80px; /* Abstand von der linken Seite hinzufügen */
+        }
+
+        .table-container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Zentriert die Buttons horizontal */
+            gap: 5px;
+        }
+
+        .button-group button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Macht die Buttons so breit wie die Spalte */
+        }
+
+        .in-progress {
+            background-color: #ffcc00; /* Gelb */
+            color: black;
+        }
+
+        .completed {
+            background-color: #4caf50; /* Grün */
+            color: white;
+        }
+
+        .missing {
+            background-color: #f44336; /* Rot */
+            color: white;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="navbar">
+        <div class="title">Netzliste</div>
+        <div class="links">
+            <a href="index.xhtml">Startseite</a>
+            <a href="netze.xhtml">Netze</a>
+        </div>
+    </div>
+
+    <h:form>
+        <div class="table-container">
+            <h:dataTable value="#{geisternetzListController.geisternetze}" var="geisternetz">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{geisternetz.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Standort</f:facet>
+                    <h:outputText value="#{geisternetz.standort}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Größe</f:facet>
+                    <h:outputText value="#{geisternetz.groesse}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <h:outputText value="#{geisternetz.status}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Aktionen</f:facet>
+                    <div class="button-group">
+                        <h:commandButton value="Bergung in Arbeit" action="#{geisternetzListController.updateStatus(geisternetz, 'Bergung in Arbeit')}" styleClass="in-progress" />
+                        <h:commandButton value="Geborgen" action="#{geisternetzListController.updateStatus(geisternetz, 'Geborgen')}" styleClass="completed" />
+                        <h:commandButton value="Verschollen" action="#{geisternetzListController.updateStatus(geisternetz, 'Verschollen')}" styleClass="missing" />
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:form>
+</h:body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
